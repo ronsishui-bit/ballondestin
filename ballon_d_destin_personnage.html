@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Personnage - Ballon d'Destin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: #0066cc;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        main {
+            padding: 1rem;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        footer {
+            background: #0066cc;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        #dice-result {
+            font-size: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ballon d'Destin</h1>
+    </header>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="regles.html">Règles</a>
+        <a href="personnage.html">Création de Personnage</a>
+        <a href="scenarios.html">Scénarios</a>
+    </nav>
+    <main>
+        <section id="personnage">
+            <h2>Création de Personnage</h2>
+            <form id="character-form">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" required>
+                <label for="poste">Poste :</label>
+                <select id="poste" required>
+                    <option value="Attaquant">Attaquant</option>
+                    <option value="Milieu">Milieu</option>
+                    <option value="Défenseur">Défenseur</option>
+                    <option value="Gardien">Gardien</option>
+                </select>
+                <label for="origine">Origine :</label>
+                <input type="text" id="origine" required>
+                <button type="button" onclick="generateCharacter()">Créer Personnage</button>
+            </form>
+            <div id="character-sheet"></div>
+        </section>
+        <section id="dice-roller">
+            <h2>Simulateur de Dés</h2>
+            <button onclick="rollDice()">Lancer le Dé (D6)</button>
+            <div id="dice-result"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Ballon d'Destin</p>
+    </footer>
+    <script>
+        function rollDice() {
+            const result = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('dice-result').textContent = `Résultat : ${result}`;
+        }
+        function generateCharacter() {
+            const nom = document.getElementById('nom').value;
+            const poste = document.getElementById('poste').value;
+            const origine = document.getElementById('origine').value;
+            const characterSheet = document.getElementById('character-sheet');
+            characterSheet.innerHTML = `<h3>Fiche de Personnage</h3><p><strong>Nom:</strong> ${nom}</p><p><strong>Poste:</strong> ${poste}</p><p><strong>Origine:</strong> ${origine}</p>`;
+        }
+    </script>
+</body>
+</html>
